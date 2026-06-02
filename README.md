@@ -61,4 +61,14 @@ We are currently in the **Architectural Design Phase**, finalizing KiCad schemat
 ---
 *Built for those who value absolute control over their digital footprint.*
 
-**License:** CERN Open Hardware License v2 (Strongly Reciprocal) | GPLv3
+## Third-Party Component Attribution & Disclaimer
+
+The Atlavox Beacon design (schematics, PCB layout, and firmware architecture) is released under the **CERN Open Hardware License v2 (Strongly Reciprocal)** and **GPLv3**.
+
+Please note that this license applies exclusively to the Atlavox Beacon design files and our original work. All third-party hardware components (such as the T-Head TH1520 SoC, Quectel RM500Q modem, Microchip ATECC608B HSM, and others) are the intellectual property of their respective manufacturers.
+
+* **No Ownership Claims:** We make no claims of ownership, rights, or control over these third-party components.
+
+* **Component Licenses:** Use of these components is subject to the terms, intellectual property rights, and licenses provided by their respective manufacturers. 
+
+* **Disclaimer:** We are not affiliated with, endorsed by, or representing these manufacturers. References to these components are provided solely for technical identification.
