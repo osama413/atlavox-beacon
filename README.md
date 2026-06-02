@@ -47,4 +47,7 @@ A massive thank you to the global **RISC-V community**, the developers, and all 
 ---
 *Project Lead Note: I'm Osama. I'm building this because I believe in device ownership. This is a project for those who want to reclaim their hardware.*
 
-**Dit is niet van mij of van jou; dit is van iedereen.**
+**this project is not mine and not your nobodys and evreones.**
+## Licensing
+- **Hardware:** CERN Open Hardware License Version 2 (Strongly Reciprocal).
+- **Software/Firmware:** GNU General Public License v3.0 (GPLv3).
