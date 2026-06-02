@@ -1,60 +1,56 @@
 # Atlavox Beacon
+
 **Sovereign Communication Node. Hardware-Enforced Trust.**
 
-> **Project Status:** 🛠️ **In Development / Architectural Phase**
-> *Atlavox Beacon is currently in the design and prototyping phase. We are laying the groundwork for a secure, auditable communication device. Contributions, feedback, and architectural discussions are highly encouraged.*
+> "This project is not mine, not yours, it's nobody's and everyone's."
 
-## The Mission
-To provide a platform where the user controls the **Root of Trust**. We move security away from the fragile software layer and anchor it into **auditable hardware**.
-
-## Key Features (The "Level 3" Approach)
-* **Immutable Root of Trust:** Dual-chip architecture. The primary bootloader is anchored in physically write-protected hardware (Immutable), serving as the unwavering Root of Trust.
-* **Verified Boot:** The immutable core cryptographically verifies the secondary BIOS/Bootloader storage before execution, ensuring a clean, verified state every time.
-* **Hardware Integrity:** Integrated Secure Element (HSM) for key storage and cryptographic operations. 
-* **Hardware-First Security:** Physical tamper-detection loops that purge master keys upon casing intrusion.
-* **True Randomness:** Dedicated hardware TRNG (True Random Number Generator) for high-entropy, unpredictable cryptographic keys—essential for secure web browsing (HTTPS/TLS) and private communication, protecting against PRNG-based predictability attacks.
-* **Privacy Kill-Switch:** Physical hardware switch to power-gate (disable) one M.2 expansion slot for ultimate privacy control.
-* **Open Everything:** From KiCad schematics to U-Boot config, we share every layer. No "PDF-only" hardware here.
-
-## Architecture
-Atlavox Beacon is built on the RISC-V (TH1520) architecture, utilizing a custom-designed carrier board to enforce our security chain.
-
-* **SoC:** T-Head TH1520 (RISC-V, Quad-core C910 @ 2.0GHz+)
-* **RAM:** LPDDR4X (Integrated on SoM)
-* **Boot Chain (Dual-Chip Storage):** * **1x Immutable Root Chip:** Physically write-protected storage containing the Core Root of Trust for Measurement (CRTM). This is the permanent, unalterable foundation of the system.
-    * **1x BIOS/Bootloader Storage:** Writable non-volatile storage containing the secondary Bootloader/BIOS (U-Boot/OpenSBI). This code is cryptographically verified by the Immutable Root chip upon every boot.
-* **Secure Element (HSM):** ATECC608B. Dedicated hardware-isolated cryptographic processor for:
-    * Secure Key Storage (Master Keys never leave the chip).
-    * Hardware-based TRNG (True Random Number Generator).
-    * Secure cryptographic signing and verification operations.
-* **Expansion:** * 2x M.2 Slots (PCIe 2.0).
-    * Physical Hardware Switch to power-gate M.2 Slot 2 (Privacy Control).
-* **I/O Connectivity:** 1x USB-C (Power/Data), 1x USB-A, 1x Gigabit Ethernet, 1x 3.5mm Audio.
-* **Display/Camera:** 1x MIPI-DSI (Display) & 1x MIPI-CSI (Camera) interfaces.
-* **OS:** Linux-first (Native Linux apps via Flatpak + Waydroid for compatibility).
-
-## Roadmap
-- [ ] Finalize Carrier Board Schematics (KiCad)
-- [ ] Prototype Secure Boot-Gate Implementation
-- [ ] Verify Tamper-Detection Circuitry
-- [ ] Initial Bring-up (U-Boot)
-
-## Getting Involved
-We are currently in the **Architectural Phase**. We are looking for:
-1. **PCB Designers** (KiCad proficiency)
-2. **Firmware Engineers** (RISC-V, U-Boot experience)
-3. **Security Researchers** (Threat modeling, hardening)
-
-Check our [Issues](https://github.com/osama413/atlavox-beacon/issues) to see what we are currently working on.
-
-## Acknowledgments
-A massive thank you to the global **RISC-V community**, the developers, and all open-source contributors. This project stands on your shoulders. Your dedication to creating transparent, verifiable, and accessible technology makes the Atlavox Beacon possible. We build this together, for the benefit of everyone.
-
-## Licensing
-- **Hardware:** CERN Open Hardware License Version 2 (Strongly Reciprocal).
-- **Software/Firmware:** GNU General Public License v3.0 (GPLv3).
+Atlavox Beacon is an open-hardware communication device built on RISC-V. We move security away from the fragile software layer and anchor it into **auditable hardware**. Our goal is to reclaim device ownership through transparent design and privacy-by-design.
 
 ---
-*Project Lead Note: I'm Osama. I'm building this because I believe in device ownership. This is a project for those who want to reclaim their hardware.*
 
-**This project is not mine, not yours, it's nobody's and everyone's.**
+## 🛠 Project Status
+**Phase:** Architectural Design & Prototyping
+We are currently finalizing the carrier board schematics in KiCad. All architectural decisions are open for community review.
+
+## 🚀 The Architecture
+
+| Component | Specification | Purpose |
+| :--- | :--- | :--- |
+| **SoC** | T-Head TH1520 (RISC-V Quad-core) | Processing Power |
+| **Boot Chain** | Immutable Root + Writable BIOS | Hardware-Enforced Boot |
+| **Security** | ATECC608B (HSM) | Key Storage & True Randomness |
+| **Connectivity** | M.2 Key B Slot | 5G/LTE (Quectel RM500Q Series) |
+| **Storage** | M.2 Key M Slot | NVMe SSD Expansion |
+| **Privacy** | Physical Kill-Switch | Power-gating (Modem/M.2) |
+
+## 🔒 Security Features
+* **Immutable Root of Trust:** A physically write-protected chip serves as the unalterable foundation for boot verification.
+* **Hardware-First Security:** Physical tamper-detection loops that trigger key erasure upon casing intrusion.
+* **Secure Element (HSM):** Dedicated hardware isolation for Master Keys. Master Keys never leave the ATECC608B chip.
+* **True Randomness:** Dedicated hardware TRNG for high-entropy cryptographic operations.
+
+## 📱 Connectivity & Expansion
+* **WWAN:** M.2 Key B Slot designed for high-speed 5G modules (e.g., Quectel RM500Q).
+* **Storage:** M.2 Key M Slot for high-speed NVMe storage.
+* **Physical Privacy:** Hardware-level power-gating switches to physically disconnect the 5G modem from the power rail when privacy is required.
+
+## 🐧 The Software Vision
+We target **Alpine Linux** as the native OS foundation due to its small footprint, security-first design, and `musl` libc efficiency. 
+* **Native:** No proprietary blobs. We aim for full mainline kernel support.
+* **Compatible:** Waydroid and Flatpak support for legacy application compatibility.
+* **Community-Driven:** We rely on and contribute back to the global RISC-V upstream development efforts.
+
+## 🤝 Getting Involved
+We are currently in the **Architectural Phase**. We are looking for contributors with expertise in:
+1. **PCB Design (KiCad):** Routing high-speed differential pairs (PCIe/USB 3.0).
+2. **Firmware Engineering:** RISC-V U-Boot and OpenSBI implementation.
+3. **Security Research:** Hardening our boot-gate logic.
+
+*Check our [Issues](https://github.com/osama413/atlavox-beacon/issues) to start contributing.*
+
+## 📜 Licensing
+* **Hardware:** CERN Open Hardware License Version 2 (Strongly Reciprocal).
+* **Software/Firmware:** GNU General Public License v3.0 (GPLv3).
+
+---
+*Built for those who want to reclaim their hardware.*
