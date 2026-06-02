@@ -8,7 +8,8 @@
 To provide a platform where the user controls the **Root of Trust**. We move security away from the fragile software layer and anchor it into **auditable hardware**.
 
 ## Key Features (The "Level 3" Approach)
-* **Immutable Boot:** Dual-FRAM architecture with physical read-only protection. Your bootloader cannot be tampered with by the OS.
+* **Immutable Root of Trust:** Dual-chip architecture. The primary bootloader is anchored in physically write-protected hardware (Immutable), serving as the unwavering Root of Trust.
+* **Verified Boot:** The immutable core cryptographically verifies the secondary BIOS/Bootloader storage before execution, ensuring a clean, verified state every time.
 * **Hardware Integrity:** Integrated Secure Element (HSM) for key storage and cryptographic operations. 
 * **Hardware-First Security:** Physical tamper-detection loops that purge master keys upon casing intrusion.
 * **True Randomness:** Dedicated hardware TRNG (True Random Number Generator) for high-entropy, unpredictable cryptographic keys—essential for secure web browsing (HTTPS/TLS) and private communication, protecting against PRNG-based predictability attacks.
@@ -19,7 +20,7 @@ Atlavox Beacon is built on the RISC-V (TH1520) architecture, utilizing a custom-
 
 * **SoC:** TH1520 (RISC-V)
 * **Secure Element:** ATECC608B (or compatible with integrated TRNG)
-* **Boot Chain:** Custom carrier board with dual-FRAM (A/B partitioning)
+* **Boot Chain:** Custom carrier board with Dual-Chip (1x Immutable Root chip, 1x BIOS Storage chip)
 * **OS:** Linux-first (Native Linux apps via Flatpak + Waydroid for compatibility)
 
 ## Roadmap
@@ -42,3 +43,5 @@ Check our [Issues](https://github.com/osama413/atlavox-beacon/issues) to see wha
 
 ---
 *Project Lead Note: I'm Osama. I'm building this because I believe in device ownership. This is a project for those who want to reclaim their hardware.*
+
+**Dit is niet van mij of van jou; dit is van iedereen.**
