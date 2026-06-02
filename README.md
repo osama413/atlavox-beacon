@@ -9,18 +9,22 @@ The **Atlavox Beacon** is an open-hardware RISC-V communication device designed 
 ---
 
 ## 🔒 The "Vault" Architecture
-We move beyond software-based security. The Atlavox Beacon utilizes a tripartite boot architecture to ensure your device is immune to compromise, even with physical access.
+We move beyond software-based security. The Atlavox Beacon utilizes a tripartite boot architecture to ensure your device is immune to compromise, even with physical access. 
 
-| Component | Type | Function |
+**Zero-Boot Policy:** The device remains in a hard-reset state until the user provides a valid authentication code.
+
+| Component | Type | Role |
 | :--- | :--- | :--- |
-| **Primary BIOS** | Writable | Standard boot sequence for daily operations & updates. |
-| **Recovery BIOS** | WORM | Immutable, fail-safe environment for system recovery. |
-| **HSM (ATECC608B)** | Cryptographic Gate | The "Vault Key." Physically gates access to the Recovery BIOS. |
+| **Primary BIOS** | Writable | Standard boot sequence. Locked until user authentication. |
+| **Recovery BIOS** | WORM | Immutable, fail-safe environment. Locked until user authentication. |
+| **HSM (ATECC608B)** | Cryptographic Gate | The "Vault Key." Physically isolates the bus from the CPU until authenticated. |
 
 ### The Boot Flow:
-1. **Integrity Check:** Upon power-on, the device performs a hardware-level integrity check.
-2. **Gated Recovery:** If the Primary BIOS fails or a recovery is triggered, the system attempts to boot the WORM-Recovery environment. 
-3. **The Lock:** The HSM blocks access to the Recovery bus until a valid authentication code is provided, preventing unauthorized tampering.
+1. **Power-On:** Processor is held in **Hard Reset**. Only the HSM and the Authentication Interface (Keypad/Input) are active.
+2. **Authentication:** The user provides a valid code. 
+3. **Verification:** The HSM validates the code and the cryptographic signature of the chosen BIOS (Primary or Recovery).
+4. **Hardware Interlock:** Upon success, the HSM closes the physical gate (via MUX/Load Switch) to the SPI/QSPI bus.
+5. **Boot:** The processor is released from reset and executes the BIOS.
 
 ---
 
@@ -38,7 +42,7 @@ We move beyond software-based security. The Atlavox Beacon utilizes a tripartite
 
 ## 📱 Privacy-by-Design
 * **Physical Kill-Switches:** Dedicated power-gating circuitry allows for the physical disconnection of the 5G modem. No software exploit can bypass a broken circuit.
-* **Hardened Boot:** By combining WORM (Write Once) memory for recovery and HSM-gated access, we ensure that "Evil Maid" attacks cannot re-flash or bypass your recovery environment.
+* **Hardened Boot:** By combining WORM (Write Once) memory for recovery and HSM-gated access, we ensure that "Evil Maid" attacks cannot re-flash or bypass your environment.
 
 ## 🐧 Software Philosophy
 We prioritize long-term maintainability and digital freedom:
