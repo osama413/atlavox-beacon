@@ -11,13 +11,14 @@ To provide a platform where the user controls the **Root of Trust**. We move sec
 * **Immutable Boot:** Dual-FRAM architecture with physical read-only protection. Your bootloader cannot be tampered with by the OS.
 * **Hardware Integrity:** Integrated Secure Element (HSM) for key storage and cryptographic operations. 
 * **Hardware-First Security:** Physical tamper-detection loops that purge master keys upon casing intrusion.
+* **True Randomness:** Dedicated hardware TRNG (True Random Number Generator) for high-entropy, unpredictable cryptographic keys—essential for secure web browsing (HTTPS/TLS) and private communication, protecting against PRNG-based predictability attacks.
 * **Open Everything:** From KiCad schematics to U-Boot config, we share every layer. No "PDF-only" hardware here.
 
 ## Architecture
 Atlavox Beacon is built on the RISC-V (TH1520) architecture, utilizing a custom-designed carrier board to enforce our security chain.
 
 * **SoC:** TH1520 (RISC-V)
-* **Secure Element:** ATECC608B (or compatible)
+* **Secure Element:** ATECC608B (or compatible with integrated TRNG)
 * **Boot Chain:** Custom carrier board with dual-FRAM (A/B partitioning)
 * **OS:** Linux-first (Native Linux apps via Flatpak + Waydroid for compatibility)
 
