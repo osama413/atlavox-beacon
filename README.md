@@ -13,15 +13,25 @@ To provide a platform where the user controls the **Root of Trust**. We move sec
 * **Hardware Integrity:** Integrated Secure Element (HSM) for key storage and cryptographic operations. 
 * **Hardware-First Security:** Physical tamper-detection loops that purge master keys upon casing intrusion.
 * **True Randomness:** Dedicated hardware TRNG (True Random Number Generator) for high-entropy, unpredictable cryptographic keys—essential for secure web browsing (HTTPS/TLS) and private communication, protecting against PRNG-based predictability attacks.
+* **Privacy Kill-Switch:** Physical hardware switch to power-gate (disable) one M.2 expansion slot for ultimate privacy control.
 * **Open Everything:** From KiCad schematics to U-Boot config, we share every layer. No "PDF-only" hardware here.
 
 ## Architecture
 Atlavox Beacon is built on the RISC-V (TH1520) architecture, utilizing a custom-designed carrier board to enforce our security chain.
 
-* **SoC:** TH1520 (RISC-V)
-* **Secure Element:** ATECC608B (or compatible with integrated TRNG)
-* **Boot Chain:** Custom carrier board with Dual-Chip (1x Immutable Root chip, 1x BIOS Storage chip)
-* **OS:** Linux-first (Native Linux apps via Flatpak + Waydroid for compatibility)
+* **SoC:** T-Head TH1520 (RISC-V, Quad-core C910 @ 2.0GHz+)
+* **RAM:** LPDDR4X (Integrated on SoM)
+* **Boot Chain (Dual-Chip):** * 1x Immutable SPI-Flash (Root of Trust/CRTM)
+    * 1x Programmable SPI-Flash (BIOS/U-Boot/OpenSBI)
+* **Expansion:** * 2x M.2 Slots (PCIe 2.0)
+    * **Hardware Switch:** Physical isolation switch for M.2 Slot 2 (Power-gating).
+* **Display/Camera:** 1x MIPI-DSI (Display) & 1x MIPI-CSI (Camera) interfaces.
+* **I/O Connectivity:** * 1x USB-C (Power/Data)
+    * 1x USB-A (Peripheral)
+    * 1x Gigabit Ethernet
+    * 1x 3.5mm Audio Jack
+* **Secure Element:** ATECC608B (or compatible with integrated TRNG).
+* **OS:** Linux-first (Native Linux apps via Flatpak + Waydroid for compatibility).
 
 ## Roadmap
 - [ ] Finalize Carrier Board Schematics (KiCad)
