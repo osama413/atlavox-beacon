@@ -1,15 +1,15 @@
-# Atlavox Beacon
+# Forness Hardened
 
 **Sovereign Communication Node | Hardware-Enforced Trust**
 
 > "This project is not mine, not yours, it's nobody's and everyone's."
 
-The **Atlavox Beacon** is an open-hardware RISC-V communication device designed to reclaim sovereignty over personal hardware. We eliminate proprietary black boxes by anchoring the entire boot-chain and security lifecycle in auditable, physical hardware.
+The **Forness Hardened** is an open-hardware RISC-V communication device designed to reclaim sovereignty over personal hardware. We eliminate proprietary black boxes by anchoring the entire boot-chain and security lifecycle in auditable, physical hardware.
 
 ---
 
 ## 🔒 The "Vault" Architecture
-We move beyond software-based security. The Atlavox Beacon utilizes a tripartite boot architecture to ensure your device is immune to compromise, even with physical access. 
+We move beyond software-based security. The Forness Hardened utilizes a tripartite boot architecture to ensure your device is immune to compromise, even with physical access. 
 
 **Zero-Boot Policy:** The device remains in a hard-reset state until the user provides a valid authentication code.
 
@@ -63,10 +63,9 @@ We are currently in the **Architectural Design Phase**, finalizing KiCad schemat
 
 ## Third-Party Component Attribution & Disclaimer and License(s)
 
+The Forness Hardened design (schematics, PCB layout, and firmware architecture) is released under the **CERN Open Hardware License v2 (Strongly Reciprocal)** and **GPLv3**.
 
-The Atlavox Beacon design (schematics, PCB layout, and firmware architecture) is released under the **CERN Open Hardware License v2 (Strongly Reciprocal)** and **GPLv3**.
-
-Please note that this license applies exclusively to the Atlavox Beacon design files and our original work. All third-party hardware components (such as the T-Head TH1520 SoC, Quectel RM500Q modem, Microchip ATECC608B HSM, and others) are the intellectual property of their respective manufacturers.
+Please note that this license applies exclusively to the Forness Hardened design files and our original work. All third-party hardware components (such as the T-Head TH1520 SoC, Quectel RM500Q modem, Microchip ATECC608B HSM, and others) are the intellectual property of their respective manufacturers.
 
 * **No Ownership Claims:** We make no claims of ownership, rights, or control over these third-party components.
 
