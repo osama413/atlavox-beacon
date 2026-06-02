@@ -21,16 +21,16 @@ Atlavox Beacon is built on the RISC-V (TH1520) architecture, utilizing a custom-
 
 * **SoC:** T-Head TH1520 (RISC-V, Quad-core C910 @ 2.0GHz+)
 * **RAM:** LPDDR4X (Integrated on SoM)
-* **Boot Chain (Dual-Chip):** * 1x Immutable SPI-Flash (Root of Trust/CRTM)
-    * 1x Programmable SPI-Flash (BIOS/U-Boot/OpenSBI)
-* **Expansion:** * 2x M.2 Slots (PCIe 2.0)
-    * **Hardware Switch:** Physical isolation switch for M.2 Slot 2 (Power-gating).
+* **Boot Chain (Dual-Chip Storage):** * **1x Immutable Root Chip:** Physically write-protected storage containing the Core Root of Trust for Measurement (CRTM). This is the permanent, unalterable foundation of the system.
+    * **1x BIOS/Bootloader Storage:** Writable non-volatile storage containing the secondary Bootloader/BIOS (U-Boot/OpenSBI). This code is cryptographically verified by the Immutable Root chip upon every boot.
+* **Secure Element (HSM):** ATECC608B. Dedicated hardware-isolated cryptographic processor for:
+    * Secure Key Storage (Master Keys never leave the chip).
+    * Hardware-based TRNG (True Random Number Generator).
+    * Secure cryptographic signing and verification operations.
+* **Expansion:** * 2x M.2 Slots (PCIe 2.0).
+    * Physical Hardware Switch to power-gate M.2 Slot 2 (Privacy Control).
+* **I/O Connectivity:** 1x USB-C (Power/Data), 1x USB-A, 1x Gigabit Ethernet, 1x 3.5mm Audio.
 * **Display/Camera:** 1x MIPI-DSI (Display) & 1x MIPI-CSI (Camera) interfaces.
-* **I/O Connectivity:** * 1x USB-C (Power/Data)
-    * 1x USB-A (Peripheral)
-    * 1x Gigabit Ethernet
-    * 1x 3.5mm Audio Jack
-* **Secure Element:** ATECC608B (or compatible with integrated TRNG).
 * **OS:** Linux-first (Native Linux apps via Flatpak + Waydroid for compatibility).
 
 ## Roadmap
