@@ -1,56 +1,57 @@
 # Atlavox Beacon
 
-**Sovereign Communication Node. Hardware-Enforced Trust.**
+**Sovereign Communication Node | Hardware-Enforced Trust**
 
-> "This project is not mine, not yours, it's nobody's and everyone's."
+> "Security is not a feature; it is an architecture."
 
-Atlavox Beacon is an open-hardware communication device built on RISC-V. We move security away from the fragile software layer and anchor it into **auditable hardware**. Our goal is to reclaim device ownership through transparent design and privacy-by-design.
+The Atlavox Beacon is a RISC-V based communication device designed to reclaim sovereignty over personal hardware. We eliminate proprietary black boxes by anchoring the entire boot-chain and security lifecycle in auditable, physical hardware.
 
 ---
 
-## 🛠 Project Status
-**Phase:** Architectural Design & Prototyping
-We are currently finalizing the carrier board schematics in KiCad. All architectural decisions are open for community review.
+## 🔒 The "Vault" Architecture (Secure Boot Chain)
+We move beyond software-based security. The Atlavox Beacon utilizes a tripartite boot architecture to ensure your device is impossible to compromise, even with physical access.
 
-## 🚀 The Architecture
-
-| Component | Specification | Purpose |
+| Component | Type | Role |
 | :--- | :--- | :--- |
-| **SoC** | T-Head TH1520 (RISC-V Quad-core) | Processing Power |
-| **Boot Chain** | Immutable Root + Writable BIOS | Hardware-Enforced Boot |
-| **Security** | ATECC608B (HSM) | Key Storage & True Randomness |
-| **Connectivity** | M.2 Key B Slot | 5G/LTE (Quectel RM500Q Series) |
-| **Storage** | M.2 Key M Slot | NVMe SSD Expansion |
-| **Privacy** | Physical Kill-Switch | Power-gating (Modem/M.2) |
+| **Primary BIOS** | Writable | Standard boot sequence for daily operations and updates. |
+| **Recovery BIOS** | WORM (Write Once) | Immutable, fail-safe environment for system recovery. |
+| **HSM (ATECC608B)** | Cryptographic Gate | The "Vault Key." Physically gates access to the Recovery BIOS. |
 
-## 🔒 Security Features
-* **Immutable Root of Trust:** A physically write-protected chip serves as the unalterable foundation for boot verification.
-* **Hardware-First Security:** Physical tamper-detection loops that trigger key erasure upon casing intrusion.
-* **Secure Element (HSM):** Dedicated hardware isolation for Master Keys. Master Keys never leave the ATECC608B chip.
-* **True Randomness:** Dedicated hardware TRNG for high-entropy cryptographic operations.
-
-## 📱 Connectivity & Expansion
-* **WWAN:** M.2 Key B Slot designed for high-speed 5G modules (e.g., Quectel RM500Q).
-* **Storage:** M.2 Key M Slot for high-speed NVMe storage.
-* **Physical Privacy:** Hardware-level power-gating switches to physically disconnect the 5G modem from the power rail when privacy is required.
-
-## 🐧 The Software Vision
-We target **Alpine Linux** as the native OS foundation due to its small footprint, security-first design, and `musl` libc efficiency. 
-* **Native:** No proprietary blobs. We aim for full mainline kernel support.
-* **Compatible:** Waydroid and Flatpak support for legacy application compatibility.
-* **Community-Driven:** We rely on and contribute back to the global RISC-V upstream development efforts.
-
-## 🤝 Getting Involved
-We are currently in the **Architectural Phase**. We are looking for contributors with expertise in:
-1. **PCB Design (KiCad):** Routing high-speed differential pairs (PCIe/USB 3.0).
-2. **Firmware Engineering:** RISC-V U-Boot and OpenSBI implementation.
-3. **Security Research:** Hardening our boot-gate logic.
-
-*Check our [Issues](https://github.com/osama413/atlavox-beacon/issues) to start contributing.*
-
-## 📜 Licensing
-* **Hardware:** CERN Open Hardware License Version 2 (Strongly Reciprocal).
-* **Software/Firmware:** GNU General Public License v3.0 (GPLv3).
+### The Boot Flow:
+1. **Verification:** Upon power-on, the device performs a hardware-level integrity check.
+2. **Gated Recovery:** If the Primary BIOS fails or a recovery is triggered, the system attempts to boot the WORM-Recovery environment. 
+3. **The Lock:** Access to the Recovery BIOS bus is physically/logically blocked by the HSM until a valid user-authentication code is processed. This prevents unauthorized tampering or recovery-mode exploits.
 
 ---
-*Built for those who want to reclaim their hardware.*
+
+## 🛠 Hardware Specifications
+
+| Subsystem | Specification | Note |
+| :--- | :--- | :--- |
+| **SoC** | T-Head TH1520 (RISC-V) | Quad-core, mainline kernel targeted. |
+| **Connectivity** | M.2 Key B Slot | Designed for Quectel RM500Q (5G/LTE). |
+| **Storage** | M.2 Key M Slot | NVMe expansion. |
+| **Security** | Microchip ATECC608B | HSM for keys, TRNG, and boot-gating. |
+| **Privacy** | Physical Power-Gates | Mechanical switches to cut power to modems. |
+
+---
+
+## 📱 Privacy-by-Design
+* **Physical Kill-Switches:** Dedicated power-gating circuitry allows for the physical disconnection of the 5G modem. No software exploit can bypass a broken circuit.
+* **Hardened Boot:** By combining WORM (Write Once) memory for recovery and HSM-gated access, we ensure that an "Evil Maid" attack cannot re-flash or bypass your recovery environment.
+
+## 🐧 Software Philosophy
+We prioritize long-term maintainability and freedom:
+* **Base OS:** Alpine Linux (Security-focused, `musl` libc).
+* **Upstream First:** We aim for mainline Linux kernel support to ensure device longevity.
+* **No Proprietary Blobs:** If we cannot audit it, we do not use it.
+
+## 🤝 Project Status & Contribution
+We are currently in the **Architectural Design Phase**, finalizing KiCad schematics and the cryptographic gate logic.
+
+* **Looking for:** PCB designers (High-speed differential signaling), Firmware engineers (RISC-V/OpenSBI/U-Boot), and Security Researchers (Fault injection/Tamper analysis).
+
+---
+*Built for those who value absolute control over their digital footprint.*
+
+**License:** CERN Open Hardware License v2 (Strongly Reciprocal) | GPLv3
