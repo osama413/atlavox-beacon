@@ -37,6 +37,9 @@ We are currently in the **Architectural Phase**. We are looking for:
 
 Check our [Issues](https://github.com/osama413/atlavox-beacon/issues) to see what we are currently working on.
 
+## Acknowledgments
+A massive thank you to the global **RISC-V community**, the developers, and all open-source contributors. This project stands on your shoulders. Your dedication to creating transparent, verifiable, and accessible technology makes the Atlavox Beacon possible. We build this together, for the benefit of everyone.
+
 ## Licensing
 - **Hardware:** CERN Open Hardware License Version 2 (Strongly Reciprocal).
 - **Software/Firmware:** GNU General Public License v3.0 (GPLv3).
