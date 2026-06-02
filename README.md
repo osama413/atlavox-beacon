@@ -61,7 +61,8 @@ We are currently in the **Architectural Design Phase**, finalizing KiCad schemat
 ---
 *Built for those who value absolute control over their digital footprint.*
 
-## Third-Party Component Attribution & Disclaimer
+## Third-Party Component Attribution & Disclaimer and License(s)
+
 
 The Atlavox Beacon design (schematics, PCB layout, and firmware architecture) is released under the **CERN Open Hardware License v2 (Strongly Reciprocal)** and **GPLv3**.
 
