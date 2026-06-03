@@ -7,7 +7,14 @@
 The **Forness Hardened** is an open-hardware RISC-V communication device designed to reclaim sovereignty over personal hardware. We eliminate proprietary black boxes by anchoring the entire boot-chain and security lifecycle in auditable, physical hardware.
 
 ---
+🤝 Join the Project
+We are currently in the Architectural Design Phase, finalizing KiCad schematics and the cryptographic gate logic.
 
+We need help with:
+PCB Design: High-speed differential signaling (PCIe/USB 3.0).
+Firmware: RISC-V U-Boot and OpenSBI implementation.
+Security: Fault injection analysis and tamper-protection hardening.
+---
 ## 🔒 The "Vault" Architecture
 We move beyond software-based security. The Forness Hardened utilizes a tripartite boot architecture to ensure your device is immune to compromise, even with physical access. 
 
