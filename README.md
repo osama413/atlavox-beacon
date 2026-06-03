@@ -1,10 +1,10 @@
 # Forness Hardened
 
-**Sovereign Communication Node | Hardware-Enforced Trust**
+**Sovereign Communication Handset | Hardware-Enforced Trust**
 
 > "This project is not mine, not yours, it's nobody's and everyone's."
 
-The **Forness Hardened** is an open-hardware RISC-V communication device designed to reclaim sovereignty over personal hardware. We eliminate proprietary black boxes by anchoring the entire boot-chain and security lifecycle in auditable, physical hardware.
+The **Forness Hardened** is an open-hardware RISC-V communication handset designed to reclaim sovereignty over personal hardware. We eliminate proprietary black boxes by anchoring the entire boot-chain and security lifecycle in auditable, physical hardware.
 
 ---
 ## 🤝 Join the Project
