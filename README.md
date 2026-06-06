@@ -72,4 +72,4 @@ Please note that this license applies exclusively to the Forness Hardened design
 
 * **Disclaimer:** We are not affiliated with, endorsed by, or representing these manufacturers. References to these components are provided solely for technical identification.
 
-* **MikroPhone could be our basic piec of hardware**
+* **MikroPhone could be our base**
