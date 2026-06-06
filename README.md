@@ -35,7 +35,7 @@ We move beyond software-based security. The Forness Hardened utilizes a triparti
 
 ---
 
-## 🛠 Hardware Specifications
+## 🛠 Hardware Specifications (not sure)
 
 | Subsystem | Specification | Note |
 | :--- | :--- | :--- |
