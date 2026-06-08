@@ -53,3 +53,6 @@ Our commitment to 100% transparency means every component, from the CPU to the G
 
 ## License & Attribution
 The Forness Hardened design is released under the **CERN Open Hardware License v2 (Strongly Reciprocal)** and **GPLv3**.
+
+
+""we will learn a lot from existing projects like pine64 librem and many more big thanks 
